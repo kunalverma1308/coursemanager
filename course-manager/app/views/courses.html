@@ -1,0 +1,47 @@
+<h2>Courses</h2>
+<!-- Add Course -->
+    <h3><a href="#!/add-course">Add Course</a></h3>
+    <hr>
+
+    <!-- Course List -->
+    <h3>Enrolled Courses</h3>
+
+    <!-- Search Input -->
+    <input type="text" ng-model="vm.searchText" placeholder="Search courses by name..." style="margin-bottom: 10px; padding: 5px; width: 100%; max-width: 300px;">
+
+    <div class="loader" ng-if="vm.loading">
+        <div class="spinner" aria-hidden="true"></div>
+        <div class="loader-text">Loading courses...</div>
+    </div>
+
+    <!-- element directive -->
+    <course-card
+        ng-repeat="course in vm.courses | courseSearch:vm.searchText | courseOrder track by $index"
+        course="course"
+        index="$index"
+        on-delete="vm.removeCourse($index)">
+    </course-card>
+
+    <!-- class directive -->
+    <!-- <div class="course-card"
+        ng-repeat="course in vm.courses | courseSearch:vm.searchText | courseOrder track by $index"
+        course="course"
+        on-delete="vm.removeCourse($index)">
+    </div> -->
+
+    <!-- attribute directive -->
+    <!-- <div course-card
+        ng-repeat="course in vm.courses | courseSearch:vm.searchText | courseOrder track by $index"
+        course="course"
+        on-delete="vm.removeCourse($index)">
+    </div> -->
+
+    <p><strong>Total Courses:</strong> {{vm.getTotal()}}</p>
+
+    <p ng-if="vm.getTotal() > 3" style="color:green">
+        You are enrolled in multiple courses!
+    </p>
+
+    <p style="color:red" ng-if="vm.errorMessage">
+        {{vm.errorMessage}}
+    </p>
