@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="courseApp">
 
+<head>
+    <meta charset="utf-8">
+    <title>AngularJS Course Manager</title>
+    <base href="/">
+
+    <!-- AngularJS Core -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <!-- AngularJS Routing -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+
+    <!-- Application Files -->
+    <script src="app/app.module.js"></script>
+    <script src="app/app.routes.js"></script>
+
+    <script src="app/services/course.service.js"></script>
+    <script src="app/controllers/main.controller.js"></script>
+    <script src="app/controllers/nav.controller.js"></script>
+    <script src="app/directives/course-card.directive.js"></script>
+    <script src="app/filters/course-search.filter.js"></script>
+    <script src="app/filters/course-order.filter.js"></script>
+    <script src="app/services/auth.service.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 30px;
+        }
+
+        nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body ng-controller="NavController as vm">
+
+    <h1>Course Manager Application</h1>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#!/">Dashboard</a>
+        <a href="#!/courses">Courses</a>
+        <a href="#!/profile">Profile</a>
+    </nav>
+    <a style="float: right;" href="#!/login" ng-if="!vm.getIsLoggedIn()">
+        Login
+    </a>
+    <a style="float: right;" ng-click="vm.logout()" ng-if="vm.getIsLoggedIn()">
+        Logout
+    </a>
+
+    <hr>
+
+    <!-- View container -->
+    <div ng-view></div>
+
+</body>
+</html>
