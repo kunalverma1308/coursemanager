@@ -1,0 +1,21 @@
+<h2>Student Profile</h2>
+
+<p>
+<strong>Name:</strong>
+{{vm.student.name | uppercase}}
+</p>
+
+<p>
+<strong>ID:</strong>
+{{vm.student.id}}
+</p>
+
+<p>
+<strong>Date of Birth:</strong>
+{{vm.student.dob | date:'MM/dd/yyyy'}}
+</p>
+
+<p>
+<strong>Total Courses Enrolled:</strong>
+{{vm.getTotalCourses()}}
+</p>
